@@ -3,11 +3,11 @@ import "./Player.css";
 
 const Player = ({item, progressMs, isPlaying}) => {
         const backgroundStyles = {
-        backgroundImage:`url(${item.album.images[0].url})`,
+                backgroundImage:`url(${item.album.images[0].url})`,
         };
 
         const progressBarStyles = {
-        width: (progressMs * 100 / item.duration_ms) + '%'
+                width: (progressMs * 100 / item.duration_ms) + '%'
         };
 
         return (

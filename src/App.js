@@ -26,7 +26,6 @@ function App() {
     const [isPlaying, setIsPlaying] = useState(false)
     const [progressMs, setProgressMs] = useState(0)
     const [noData, setNoData] = useState(false)
-    const [seconds, setSeconds] = useState(0);
 
     useEffect(() => {
         const hash = window.location.hash
@@ -44,8 +43,7 @@ function App() {
             if(token) {
                 getCurrentlyPlaying(token);
             }
-            setSeconds(seconds => seconds + 1);
-        }, 1000);
+        }, 100);
 
         return () => {
             clearInterval(interval);
@@ -113,8 +111,6 @@ function App() {
                     play a song on spotify
                     </p>
                 )}
-
-                <p>{seconds} seconds have elapsed since mounting.</p>
             </header>
         </div>
     );
