@@ -3,7 +3,7 @@ import "./Player.css";
 
 const Player = ({item, progressMs, isPlaying}) => {
         const backgroundStyles = {
-                backgroundImage:`url(${item.album.images[0].url})`,
+                backgroundImage:`url(${item.album.images[0].url})`
         };
 
         const progressBarStyles = {
@@ -14,7 +14,7 @@ const Player = ({item, progressMs, isPlaying}) => {
         <div className="App">
         <div className="main-wrapper">
                 <div className="now-playing__img">
-                <img src={item.album.images[0].url} />
+                <img src={item.album.images[0].url}/>
                 </div>
                 <div className="now-playing__side">
                 <div className="now-playing__name">{item.name}</div>

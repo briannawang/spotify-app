@@ -1,3 +1,42 @@
+/* COLOURS */
+:root {
+  --crimson: #d7263dff;
+  --oxford-blue: #02182bff;
+  --dodger-blue: #0197f6ff;
+  --blue-munsell: #448fa3ff;
+  --middle-blue: #68c5dbff;
+
+  --dark-jungle-green: #182825ff;
+  --spanish-blue: #016fb9ff;
+  --pacific-blue: #22aed1ff;
+  --light-slate-gray: #6d8ea0ff;
+  --khaki-web: #afa98dff;
+
+  --eerie-black: #1c1c1cff;
+  --gainsboro: #daddd8ff;
+  --alabaster: #ecebe4ff;
+  --cultured: #eef0f2ff;
+  --ghost-white: #fafaffff;
+
+  --eerie-black: #1c1c1cff;
+  --gainsboro: #daddd8ff;
+  --slate-gray: #63768dff;
+  --cultured: #eef0f2ff;
+  --glaucous: #6b7fd7ff;
+
+  --eerie-black: #1c1c1cff;
+  --columbia-blue: #c7e8f3ff;
+  --slate-gray: #63768dff;
+  --cedar-chest: #cd533bff;
+  --golden-brown: #a27035ff;
+
+  --eerie-black: #1c1c1cff;
+  --columbia-blue: #c7e8f3ff;
+  --slate-gray: #63768dff;
+  --vegas-gold: #d6ba73ff;
+  --golden-brown: #a27035ff;
+}
+
 .App {
   text-align: center;
 }
@@ -14,7 +53,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #21222e;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,7 +77,7 @@
 }
 
 .button {
-  background-color: rgb(100, 100, 100);
+  background-color: #3f4156;
   display: flex;
   flex-direction: column;
   align-items: center;

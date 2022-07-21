@@ -4,6 +4,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        width: 100vw;
 }
 
 .now-playing__name {
@@ -18,7 +19,7 @@
         margin-bottom: 1em;
 }
 .now-playing__img {
-        width: 45%;
+        width: 22.5%;
         display: flex;
         flex-direction: column;
 }
@@ -33,7 +34,7 @@
 }
 /** Progress **/
 .progress {
-        background-color: rgb(100, 100, 100);
+        background-color: #3f4156;
         height: 6px;
         overflow: hidden;
         width: 60%;
