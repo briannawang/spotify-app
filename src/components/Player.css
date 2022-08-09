@@ -32,7 +32,7 @@
         flex-direction: column;
         width: 75%;
 }
-/** Progress **/
+* Progress *
 .progress {
         background-color: #3f4156;
         height: 6px;

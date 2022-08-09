@@ -64,8 +64,6 @@ app.get('/auth/callback', (req, res) => {
     if (!error && response.statusCode === 200) {
       access_token = body.access_token;
       res.redirect('/')
-    } else {
-      res.redirect("https://www.google.com");
     }
   });
 

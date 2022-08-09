@@ -19,15 +19,15 @@ function App() {
 
   }, []);
 
-  const logout = () => {
-    setToken("");
+    const logout = () => {
+        setToken("");
     }
 
   return (
     <div className="App">
             <header className="App-header">
                 <h1>spotify app</h1>
-                {!token ?
+                {(token === "") ?
                     <Login/>
                     : <div>
                         <button className="button" onClick={logout}>logout</button>

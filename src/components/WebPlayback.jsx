@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import './Player.css';
+import * as $ from "jquery";
 
-const item = {
+const track = {
     name: "",
     album: {
         images: [
@@ -13,20 +15,16 @@ const item = {
     duration_ms: 0
 }
 
-const WebPlayback = ({token}) => {
-
-    const [is_paused, setPaused] = useState(false);
+function WebPlayback({token}) {
+    const is_pausedRef = useRef(true);
     const [is_active, setActive] = useState(false);
     const [player, setPlayer] = useState(undefined);
-    const [current_track, setTrack] = useState(item);
+    const [current_track, setTrack] = useState(track);
     const [progress_ms, setProgress] = useState(0);
-
-    const backgroundStyles = {
-        backgroundImage:`url(${item.album.images[0].url})`
-    };
+    const [duration_ms, setDuration] = useState(0);
 
     const progressBarStyles = {
-            width: (progress_ms * 100 / item.duration_ms) + '%'
+        width: (progress_ms * 100 / duration_ms) + '%'
     };
 
     useEffect(() => {
@@ -56,13 +54,28 @@ const WebPlayback = ({token}) => {
             });
 
             player.addListener('player_state_changed', ( state => {
-
                 if (!state) {
                     return;
                 }
 
+                setProgress(state.position);
                 setTrack(state.track_window.current_track);
-                setPaused(state.paused);
+                is_pausedRef.current = state.paused;
+
+                $.ajax({
+                    url: "https://api.spotify.com/v1/me/player",
+                    type: "GET",
+                    beforeSend: xhr => {
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    },
+        
+                    success: data => {
+                        if(data) {
+                            setDuration(data.item.duration_ms);
+                        }
+                    }
+                });
 
                 player.getCurrentState().then( state => { 
                     (!state)? setActive(false) : setActive(true) 
@@ -71,8 +84,17 @@ const WebPlayback = ({token}) => {
             }));
 
             player.connect();
+        }
 
-        };
+        const interval = setInterval(() => {
+            if (!is_pausedRef.current) {
+                setProgress(p => p + 100);
+            }
+        }, 100, !is_pausedRef.current);
+
+        return () => {
+            clearInterval(interval);
+        }
     }, []);
 
     if (!is_active) { 
@@ -87,7 +109,7 @@ const WebPlayback = ({token}) => {
     } else {
         return (
             <>
-                <div className="coAppntainer">
+                <div className="container">
                     <div className="main-wrapper">
 
                         <img src={current_track.album.images[0].url} className="now-playing__cover" alt="" />
@@ -101,20 +123,20 @@ const WebPlayback = ({token}) => {
                             </button>
 
                             <button className="btn-spotify" onClick={() => { player.togglePlay() }} >
-                                { is_paused ? "play" : "pause" }
+                                { is_pausedRef.current ? "play" : "pause" }
                             </button>
 
                             <button className="btn-spotify" onClick={() => { player.nextTrack() }} >
                                 &gt;&gt;
                             </button>
-
+                            <p>progress: {progress_ms}</p>
+                            <p>duration: {duration_ms}</p>
                             <div className="progress">
                             <div
                             className="progress__bar"
                             style={progressBarStyles}
                             />
                             </div>
-                            <div className="background" style={backgroundStyles} />{" "}
                         </div>
                     </div>
                 </div>
