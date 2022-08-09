@@ -5,9 +5,11 @@ function Login() {
     return (
         <div className="App">
             <header className="App-header">
-                <a className="btn-spotify" href="/auth/login" >
-                    login to spotify
-                </a>
+                <button className="btn-spotify">
+                    <a className="btn-spotify" href="/auth/login" >
+                        login
+                    </a>
+                </button>
             </header>
         </div>
     );

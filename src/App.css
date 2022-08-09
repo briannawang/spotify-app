@@ -76,13 +76,22 @@
   }
 }
 
+h1 {
+  display: flex;
+  margin-bottom: 2vw;
+}
+
 .button {
   background-color: #3f4156;
+  display: flex;
+  font-size: calc(2px + 2vmin);
+  color: white;
+  border: 0px;
+}
+
+.playback-window {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(2px + 2vmin);
-  color: white;
-  border: 0px;
 }

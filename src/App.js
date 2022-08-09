@@ -29,7 +29,7 @@ function App() {
                 <h1>spotify app</h1>
                 {(token === "") ?
                     <Login/>
-                    : <div>
+                    : <div className="playback-window">
                         <button className="button" onClick={logout}>logout</button>
                         <WebPlayback token={token}/>
                     </div>

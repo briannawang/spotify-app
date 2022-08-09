@@ -15,9 +15,6 @@
 .now-playing__artist {
         margin-bottom: 1em;
 }
-.now-playing__status {
-        margin-bottom: 1em;
-}
 .now-playing__img {
         width: 22.5%;
         display: flex;
@@ -32,15 +29,60 @@
         flex-direction: column;
         width: 75%;
 }
+
+.control-btns {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+}
+
+.btn-spotify {
+        display: flex;
+        background-color: #3f4156;
+        font-size: calc(2px + 2vmin);
+        color: white;
+        border: 0px;
+        text-decoration: none;
+}
+
+.song-timeinfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+}
 * Progress *
 .progress {
         background-color: #3f4156;
         height: 6px;
         overflow: hidden;
-        width: 60%;
         align-self: center;
 }
 .progress__bar {
         background-color: #eee;
         height: 6px;
+}
+.progress-background {
+        margin-top: 20px;
+        background-color: #3f4156;
+        height: 6px;
+        align-self: center;
+        width: 60%;
+}
+
+/* time */
+
+.song-progress {
+        display: flex;
+        align-items: row;
+        justify-content: space-between;
+        width: calc(60% + 2px + 4vmin);
+}
+.song-progress__position {
+        font-size: calc(2px + 2vmin);
+        margin-top: 2px;
+}
+.song-progress__duration {
+        font-size: calc(2px + 2vmin);
+        margin-top: 2px;
 }
