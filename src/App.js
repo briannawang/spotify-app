@@ -26,11 +26,11 @@ function App() {
   return (
     <div className="App">
             <header className="App-header">
-                <h1>spotify app</h1>
+                <h1 className="app-name">⌜spotify app⌟</h1>
                 {(token === "") ?
                     <Login/>
                     : <div className="playback-window">
-                        <button className="button" onClick={logout}>logout</button>
+                        <button className="login-button" onClick={logout}>logout</button>
                         <WebPlayback token={token}/>
                     </div>
                 }

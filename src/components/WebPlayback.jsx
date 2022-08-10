@@ -43,7 +43,7 @@ function WebPlayback({token}) {
 
         window.onSpotifyWebPlaybackSDKReady = () => {
 
-            const player = new window.Spotify.Player({
+            var player = new window.Spotify.Player({
                 name: 'spotify app',
                 getOAuthToken: cb => { cb(token); },
                 volume: 0.5
@@ -64,7 +64,7 @@ function WebPlayback({token}) {
                     return;
                 }
 
-                if (current_track != state.track_window.current_track) {
+                if (current_track !== state.track_window.current_track) {
                     $.ajax({
                         url: "https://api.spotify.com/v1/me/player",
                         type: "GET",
@@ -111,7 +111,7 @@ function WebPlayback({token}) {
             <>
                 <div className="container">
                     <div className="main-wrapper">
-                        <b> instance not active. transfer playback device on spotify </b>
+                        <p> transfer playback device </p>
                     </div>
                 </div>
             </>)
@@ -129,15 +129,15 @@ function WebPlayback({token}) {
                             
                             <div className="control-btns">
                                 <button className="btn-spotify" onClick={() => { player.previousTrack() }} >
-                                    &lt;&lt;
+                                    ◄⏽
                                 </button>
 
-                                <button className="btn-spotify" onClick={() => { player.togglePlay() }} >
+                                <button className="btn-spotify" id="toggle-play" onClick={() => { player.togglePlay(); setProgress(0); }} >
                                     { is_pausedRef.current ? "play" : "pause" }
                                 </button>
 
                                 <button className="btn-spotify" onClick={() => { player.nextTrack() }} >
-                                    &gt;&gt;
+                                    ⏽►
                                 </button>
                             </div>
 

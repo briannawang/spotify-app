@@ -1,4 +1,4 @@
-/* COLOURS */
+COLOURS
 :root {
   --crimson: #d7263dff;
   --oxford-blue: #02182bff;
@@ -63,6 +63,7 @@
   color: white;
 }
 
+
 .App-link {
   color: #61dafb;
 }
@@ -78,15 +79,19 @@
 
 h1 {
   display: flex;
-  margin-bottom: 2vw;
+  margin-top: 0px;
+  margin-bottom: calc(5px + 1vmin);
+  align-self: center;
 }
 
-.button {
+.login-button {
   background-color: #3f4156;
   display: flex;
+  align-self: center;
   font-size: calc(2px + 2vmin);
   color: white;
   border: 0px;
+  text-decoration: none;
 }
 
 .playback-window {
