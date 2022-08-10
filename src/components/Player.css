@@ -1,0 +1,96 @@
+.main-wrapper {
+        margin-top: calc(10px + 1vmin);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+}
+
+.now-playing__name {
+        font-size: 1.5em;
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
+}
+.now-playing__artist {
+        margin-bottom: 1em;
+}
+.now-playing__img {
+        width: 22.5%;
+        max-width: 35vmin;
+        display: flex;
+        flex-direction: column;
+}
+.now-playing__img img {
+        width: 100%;
+}
+.now-playing__side {
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+}
+
+.control-btns {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+}
+
+.btn-spotify {
+        display: flex;
+        background-color: #3f4156;
+        font-size: calc(2px + 2vmin);
+        color: white;
+        border: 0px;
+        margin: 0px calc(2px + 0.5vmin);
+        justify-content: center;
+}
+
+#toggle-play {
+        width: calc(50px + 3vmin);
+}
+
+.song-timeinfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+* Progress *
+.progress {
+        background-color: #3f4156;
+        height: 6px;
+        overflow: hidden;
+        align-self: center;
+}
+.progress__bar {
+        background-color: #eee;
+        height: 6px;
+}
+.progress-background {
+        margin-top: 20px;
+        background-color: #3f4156;
+        height: 6px;
+        align-self: center;
+        width: 60%;
+}
+
+/* time */
+
+.song-progress {
+        height: fit-content;
+        display: flex;
+        align-items: row;
+        justify-content: space-between;
+        width: calc(60% + 2px + 4vmin);
+}
+.song-progress__position {
+        font-size: calc(2px + 2vmin);
+        margin-top: 2px;
+        margin-bottom: 0px;
+}
+.song-progress__duration {
+        font-size: calc(2px + 2vmin);
+        margin-top: 2px;
+        margin-bottom: 0px;
+}
