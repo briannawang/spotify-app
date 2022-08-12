@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Player.css';
+import './../App.css';
+import TrackAudioInfo from './TrackAudioInfo'
 import * as $ from "jquery";
 
 const track = {
+    uri: "",
+    id: "",
     name: "",
     album: {
         images: [
@@ -45,7 +49,13 @@ function WebPlayback({token}) {
 
             var player = new window.Spotify.Player({
                 name: 'spotify app',
-                getOAuthToken: cb => { cb(token); },
+                getOAuthToken: cb => { 
+                    // const response = fetch('/auth/token');
+                    // const json = response.json();
+                    // cb(json.access_token);
+                    console.log("token got " + token)
+                    cb(token)
+                 },
                 volume: 0.5
             });
 
@@ -111,6 +121,7 @@ function WebPlayback({token}) {
             <>
                 <div className="container">
                     <div className="main-wrapper">
+                    {/* <p>{token}</p> */}
                         <p> transfer playback device </p>
                     </div>
                 </div>
@@ -119,6 +130,8 @@ function WebPlayback({token}) {
         return (
             <>
                 <div className="container">
+                    {/* <p>{token}</p> */}
+                    <TrackAudioInfo token={token} trackId={current_track.id}/>
                     <div className="main-wrapper">
 
                         <img src={current_track.album.images[0].url} className="now-playing__img" alt="" />
@@ -132,7 +145,7 @@ function WebPlayback({token}) {
                                     ◄⏽
                                 </button>
 
-                                <button className="btn-spotify" id="toggle-play" onClick={() => { player.togglePlay(); setProgress(0); }} >
+                                <button className="btn-spotify" id="toggle-play" onClick={() => { player.togglePlay() }} >
                                     { is_pausedRef.current ? "play" : "pause" }
                                 </button>
 
