@@ -1,0 +1,27 @@
+.TrackAudioInfo {
+        display: flex;
+        flex-direction: row;
+        /* width: 50%; */
+}
+
+.feature_text {
+        display: flex;
+        flex-direction: row;
+        font-size: calc(2px + 2vmin);
+}
+
+.feature_key {
+        text-align: right;
+        margin-right: 10px;
+}
+
+.feature_value {
+        text-align: left;
+}
+
+.feature_list {
+        display: flex;
+        flex-direction: row;
+        text-align: right;
+        font-size: calc(2px + 2vmin);
+}

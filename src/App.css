@@ -39,6 +39,12 @@ COLOURS
 
 .App {
   text-align: center;
+  background-color: #21222e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-logo {
@@ -53,16 +59,14 @@ COLOURS
 }
 
 .App-header {
+  width: 100%;
   background-color: #21222e;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 
 .App-link {
   color: #61dafb;
@@ -80,6 +84,7 @@ COLOURS
 h1 {
   display: flex;
   margin-top: 0px;
+  margin-left: 1vmin;
   margin-bottom: calc(5px + 1vmin);
   align-self: center;
 }
@@ -94,9 +99,14 @@ h1 {
   text-decoration: none;
 }
 
+button.login-button {
+  margin-right: calc(12px + 2vmin);
+}
+
 .playback-window {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* display: flex; */
+  /* flex-direction: row; */
+  height: 82vh;
+  /* align-items: center;
+  justify-content: center; */
 }

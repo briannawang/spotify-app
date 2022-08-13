@@ -131,7 +131,6 @@ function WebPlayback({token}) {
             <>
                 <div className="container">
                     {/* <p>{token}</p> */}
-                    <TrackAudioInfo token={token} trackId={current_track.id}/>
                     <div className="main-wrapper">
 
                         <img src={current_track.album.images[0].url} className="now-playing__img" alt="" />
@@ -169,6 +168,9 @@ function WebPlayback({token}) {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="TrackAudioInfo">
+                        <TrackAudioInfo token={token} current_track={current_track}/>
                     </div>
                 </div>
             </>
