@@ -23,6 +23,24 @@ const analyzedAudioFeature = {
     valence: "",
 }
 
+const audioStructure = {
+    tempo: 0.0,
+    key: 0,
+    mode: 0,
+    time_signature: 0,
+    loudness: 0.0,
+    uri: ""
+}
+
+const analyzedAudioStructure = {
+    tempo: 0, // 0 decimal places
+    key: "", // https://en.wikipedia.org/wiki/Pitch_class
+    mode: "", // major = 1, minor = 0
+    time_signature: "", // x/4
+    loudness: 0.0, // 1 decimal place
+    uri: ""
+}
+
 const analyzeAudioFeature = (audioFeature, setAnalyzedAudioFeatures) => {
     analyzedAudioFeature.acousticness = (
         audioFeature.acousticness > 0.85 ? "very_high" :
@@ -73,7 +91,7 @@ const analyzeAudioFeature = (audioFeature, setAnalyzedAudioFeatures) => {
 function FeatureRow({featureKey, featureValue, analyzedFeatureValue}) {
     return (
         <tr>
-            <td className="feature_key">{featureKey}</td>
+            <td className="feature_key">{featureKey.replace("_", " ")}</td>
             <td className="feature_value" id={analyzedFeatureValue}>{featureValue}</td>
         </tr>
     );
@@ -92,9 +110,69 @@ function FeatureTextList({audioFeatures, analyzedAudioFeatures}) {
     );
 }
 
+const analyzeAudioStructure = (audioStructure, setAnalyzedAudioStructures) => {
+    analyzedAudioStructure.tempo = Math.round(audioStructure.tempo);
+    analyzedAudioStructure.mode = audioStructure.mode == 1 ? "major" : "minor";
+    analyzedAudioStructure.time_signature = audioStructure.time_signature + "/4";
+    analyzedAudioStructure.loudness = Math.round(audioStructure.tempo * 10) / 10 + " dB";
+
+    switch(audioStructure.key) {
+        case -1: analyzedAudioStructure.key = "n/a"; 
+            break;
+        case 0: analyzedAudioStructure.key = "C"; 
+            break;
+        case 1: analyzedAudioStructure.key = "C♯/D♭"; 
+            break;
+        case 2: analyzedAudioStructure.key = "D"; 
+            break;
+        case 3: analyzedAudioStructure.key = "D♯/E♭"; 
+            break;
+        case 4: analyzedAudioStructure.key = "E"; 
+            break;
+        case 5: analyzedAudioStructure.key = "F"; 
+            break;
+        case 6: analyzedAudioStructure.key = "F♯/G♭"; 
+            break;
+        case 7: analyzedAudioStructure.key = "G"; 
+            break;
+        case 8: analyzedAudioStructure.key = "G♯/A♭"; 
+            break;
+        case 9: analyzedAudioStructure.key = "A"; 
+            break;
+        case 10: analyzedAudioStructure.key = "A♯/B♭"; 
+            break;
+        case 11: analyzedAudioStructure.key = "B"; 
+            break;
+    }
+
+    setAnalyzedAudioStructures(analyzedAudioStructure)
+}
+
+function StructureDisplay({audioStructures, analyzedAudioStructures}) {
+    var structureTextKeys = Object.keys(audioStructure);
+    var structureList = [];
+    for (var i = 1; i < 5; i++) {
+        structureList.push(<FeatureRow featureKey={structureTextKeys[i]} featureValue={analyzedAudioStructures[structureTextKeys[i]]} analyzedFeatureValue="audio-structure"/>);
+    }
+    
+    return (
+        <div className="structure-display">
+            <table className="structure-vertical">
+                <tr><td className="tempo-td">tempo</td></tr>
+                <tr><td className="tempo-value">{analyzedAudioStructures.tempo}<mark className="bpm-td">bpm</mark></td></tr>
+            </table>
+            <table className="structure_list">
+                {structureList}
+            </table>
+        </div>
+    );
+}
+
 function TrackAudioInfo({token, current_track}) {
     const [audioFeatures, setAudioFeatures] = useState(audioFeature);
     const [analyzedAudioFeatures, setAnalyzedAudioFeatures] = useState(analyzedAudioFeature);
+    const [audioStructures, setAudioStructures] = useState(audioStructure);
+    const [analyzedAudioStructures, setAnalyzedAudioStructures] = useState(audioStructure);
     const [noData, setNoData] = useState(true);
 
     const trackId = current_track.id;
@@ -116,6 +194,8 @@ function TrackAudioInfo({token, current_track}) {
 
                 setAudioFeatures(data);
                 analyzeAudioFeature(data, setAnalyzedAudioFeatures);
+                setAudioStructures(data);
+                analyzeAudioStructure(data, setAnalyzedAudioStructures);
                 setNoData(false);
             }
         });
@@ -132,6 +212,8 @@ function TrackAudioInfo({token, current_track}) {
             <>
                 <div className="TrackAudioInfo">
                     <FeatureTextList audioFeatures={audioFeatures} analyzedAudioFeatures={analyzedAudioFeatures}/>
+                    <StructureDisplay audioStructures={audioStructures} analyzedAudioStructures={analyzedAudioStructures}/>
+                    <a className="track-uri" href={audioStructures.uri}>{audioStructures.uri}</a>
                 </div>
             </>
         );

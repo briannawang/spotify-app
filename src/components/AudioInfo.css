@@ -1,15 +1,26 @@
 .TrackAudioInfo {
         display: flex;
-        flex-direction: row;
-        width: 50%;
+        flex-direction: column;
+        width: 42vw;
+        height: 90%;
         justify-content: center;
+        align-items: center;
 }
 
+.track-uri {
+        margin-top: 5vh;
+        font-size: calc(1px + 2vmin);
+        color: #d6ba73ff;
+}
+
+/* feature */
+
 .feature_list {
-        font-size: calc(2px + 2vmin);
+        margin-bottom: 5vh;
 }
 
 td {
+        font-size: calc(2px + 2vmin);
         padding-left: 5px;
         padding-right: 5px;
 }
@@ -33,10 +44,45 @@ td {
 }
 
 #low {
-        color: #6d8ea0ff;
+        color: rgb(109, 133, 160);
         font-weight: 450;
 }
 
 #not {
         color: #3f4156;
+}
+
+/* structure */
+
+.structure-display {
+        display: flex;
+        flex-direction: row;
+}
+
+.structure-vertical {
+        height: fit-content;
+}
+
+.structure_list {
+        margin-left: 4vw;
+}
+
+#audio-structure {
+        color: #67697e;
+}
+
+mark.bpm-td {
+        vertical-align: 5%;
+        font-size: calc(2px + 2vmin);
+        background-color: #21222e;
+        color: #67697e;
+        margin-left: 5px;
+}
+
+.tempo-value {
+        font-weight: 500;
+        font-size: calc(30px + 4vmin);
+        background-color: #21222e;
+        color: #67697e;
+        padding-right: 0px;
 }
