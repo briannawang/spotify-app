@@ -148,7 +148,7 @@ const analyzeAudioStructure = (audioStructure, setAnalyzedAudioStructures) => {
     setAnalyzedAudioStructures(analyzedAudioStructure)
 }
 
-function StructureDisplay({audioStructures, analyzedAudioStructures}) {
+function StructureDisplay({analyzedAudioStructures}) {
     var structureTextKeys = Object.keys(audioStructure);
     var structureList = [];
     for (var i = 1; i < 5; i++) {
@@ -168,7 +168,7 @@ function StructureDisplay({audioStructures, analyzedAudioStructures}) {
     );
 }
 
-function TrackAudioInfo({token, current_track}) {
+function TrackAudioInfo({token, current_track, is_pausedRef}) {
     const [audioFeatures, setAudioFeatures] = useState(audioFeature);
     const [analyzedAudioFeatures, setAnalyzedAudioFeatures] = useState(analyzedAudioFeature);
     const [audioStructures, setAudioStructures] = useState(audioStructure);
@@ -197,6 +197,10 @@ function TrackAudioInfo({token, current_track}) {
                 setAudioStructures(data);
                 analyzeAudioStructure(data, setAnalyzedAudioStructures);
                 setNoData(false);
+
+                if (!is_pausedRef) {
+                    document.querySelector(':root').style.setProperty('--tempo', (60 / data.tempo) * data.time_signature + 's');
+                }
             }
         });
       
@@ -212,7 +216,7 @@ function TrackAudioInfo({token, current_track}) {
             <>
                 <div className="TrackAudioInfo">
                     <FeatureTextList audioFeatures={audioFeatures} analyzedAudioFeatures={analyzedAudioFeatures}/>
-                    <StructureDisplay audioStructures={audioStructures} analyzedAudioStructures={analyzedAudioStructures}/>
+                    <StructureDisplay analyzedAudioStructures={analyzedAudioStructures}/>
                     <a className="track-uri" href={audioStructures.uri}>{audioStructures.uri}</a>
                 </div>
             </>

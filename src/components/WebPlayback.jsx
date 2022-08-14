@@ -167,7 +167,7 @@ function WebPlayback({token}) {
                         </div>
                     </div>
                     <div className="TrackAudioInfo">
-                        <TrackAudioInfo token={token} current_track={current_track}/>
+                        <TrackAudioInfo token={token} current_track={current_track} is_pausedRef={is_pausedRef.current}/>
                     </div>
                 </div>
             </>
