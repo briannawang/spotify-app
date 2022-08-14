@@ -1,27 +1,42 @@
 .TrackAudioInfo {
         display: flex;
         flex-direction: row;
-        /* width: 50%; */
+        width: 50%;
+        justify-content: center;
 }
 
-.feature_text {
-        display: flex;
-        flex-direction: row;
+.feature_list {
         font-size: calc(2px + 2vmin);
+}
+
+td {
+        padding-left: 5px;
+        padding-right: 5px;
 }
 
 .feature_key {
         text-align: right;
-        margin-right: 10px;
 }
 
 .feature_value {
         text-align: left;
 }
 
-.feature_list {
-        display: flex;
-        flex-direction: row;
-        text-align: right;
-        font-size: calc(2px + 2vmin);
+#very_high {
+        color: #d6ba73ff;
+        font-weight: 800;
+}
+
+#high {
+        color: #a27035ff;
+        font-weight: 600;
+}
+
+#low {
+        color: #6d8ea0ff;
+        font-weight: 450;
+}
+
+#not {
+        color: #3f4156;
 }

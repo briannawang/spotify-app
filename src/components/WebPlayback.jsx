@@ -50,9 +50,6 @@ function WebPlayback({token}) {
             var player = new window.Spotify.Player({
                 name: 'spotify app',
                 getOAuthToken: cb => { 
-                    // const response = fetch('/auth/token');
-                    // const json = response.json();
-                    // cb(json.access_token);
                     console.log("token got " + token)
                     cb(token)
                  },
@@ -122,7 +119,7 @@ function WebPlayback({token}) {
                 <div className="container">
                     <div className="main-wrapper">
                     {/* <p>{token}</p> */}
-                        <p> transfer playback device </p>
+                        <p className="background-text-color"> transfer playback device </p>
                     </div>
                 </div>
             </>)

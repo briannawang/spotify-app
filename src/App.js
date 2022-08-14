@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
         <header className="App-header">
-            <h1 className="app-name">⌜spotify app⌟</h1>
+            <h1 className="app-name"><mark className="gold">⌜</mark>spotify app<mark className="gold">⌟</mark></h1>
             {(token === "") ?
                 <Login/>
                 : <button className="login-button" onClick={logout}>logout</button>   

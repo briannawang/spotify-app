@@ -68,6 +68,11 @@ COLOURS
   color: white;
 }
 
+mark.gold {
+  background-color: #21222e;
+  color: #d6ba73ff;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -83,8 +88,8 @@ COLOURS
 
 h1 {
   display: flex;
-  margin-top: 0px;
-  margin-left: 1vmin;
+  margin-top: calc(1vmin - 2px);
+  margin-left: calc(2px + 1vmin);
   margin-bottom: calc(5px + 1vmin);
   align-self: center;
 }
@@ -109,4 +114,8 @@ button.login-button {
   height: 82vh;
   /* align-items: center;
   justify-content: center; */
+}
+
+.background-text-color {
+  color: #4a4c5f;
 }
