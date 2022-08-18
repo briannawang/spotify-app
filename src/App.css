@@ -1,5 +1,9 @@
 COLOURS
 :root {
+  --tempo: 0s;
+  --swatch: white;
+  --dark_swatch: rgb(185, 187, 199);
+
   --crimson: #d7263dff;
   --oxford-blue: #02182bff;
   --dodger-blue: #0197f6ff;

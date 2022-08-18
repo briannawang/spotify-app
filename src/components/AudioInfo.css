@@ -10,8 +10,7 @@
 .track-uri {
         margin-top: 5vh;
         font-size: calc(1px + 2vmin);
-        /* color: #d6ba73ff; */
-        color:white;
+        color:var(--swatch);
 }
 
 /* feature */
@@ -35,12 +34,12 @@ td {
 }
 
 #very_high {
-        color: #d6ba73ff;
+        color: var(--swatch);
         font-weight: 800;
 }
 
 #high {
-        color: #a27035ff;
+        color: var(--dark_swatch);
         font-weight: 600;
 }
 
@@ -80,10 +79,6 @@ mark.bpm-td {
         margin-left: 5px;
 }
 
-:root {
-        --tempo: 0s;
-}
-
 .tempo-value {
         font-weight: 500;
         font-size: calc(30px + 4vmin);
@@ -96,8 +91,8 @@ mark.bpm-td {
 }
 
 @keyframes tempoPulse {  
-        0% { color: #67697e; }
-        49% { color: #67697e; }
-        50% { color: #a0a1b4; }
-        100% { color: #a0a1b4; }
+        0% { color: var(--dark_swatch); }
+        49% { color: var(--dark_swatch); }
+        50% { color: var(--swatch); }
+        100% { color: var(--swatch); }
       }

@@ -43,9 +43,9 @@ const analyzedAudioStructure = {
 
 const analyzeAudioFeature = (audioFeature, setAnalyzedAudioFeatures) => {
     analyzedAudioFeature.acousticness = (
-        audioFeature.acousticness > 0.85 ? "very_high" :
-        audioFeature.acousticness > 0.65 ? "high" :
-        audioFeature.acousticness > 0.15 ? "low" :
+        audioFeature.acousticness > 0.8 ? "very_high" :
+        audioFeature.acousticness > 0.6 ? "high" :
+        audioFeature.acousticness > 0.2 ? "low" :
         "not"
     );
     analyzedAudioFeature.danceability = (
