@@ -58,40 +58,57 @@ const rgbToHsl = ([r, g, b]) => {
 };
 
 function darkenSwatch ([h, s, l]) {
-    return [ h, s * (0.45 + s/200), l * (0.4 + l/200) ];
+    var subS = s > 30 ? 20 : s/3;
+    var subL = l > 20 ? 10 : s/4;
+
+    return [ h, s - subS - (s/25), l - subL - (l/30)];
 }
 
 function swatchColours(track) {
-    var swatch = [0, 0, 0];
+    prominent(track.album.images[0].url, { amount: 15 }, { group: 30 }, { sample: 20 }).then(colors => {
+        var swatch = [0, 0, 0];
+        var foundSwatch = false;
 
-    prominent(track.album.images[0].url, { amount: 10 }).then(colors => {
+        console.log('sw:' + swatch);
+
         for (let i = 0; i < colors.length; i++) {
             var hslcolor = rgbToHsl(colors[i]);
 
-            if (hslcolor[1] > swatch[1]) {
+            if (hslcolor[1] > swatch[1] && hslcolor[2] > 25) {
                 swatch = hslcolor;
-
-                if ((swatch[1] + swatch[2]) > 80 && (swatch[1] > 30 || swatch[2] > 30)) {
-                    if (swatch[1] < 45) {
-                        swatch[1] = 45;
-                    }
+                foundSwatch = true;
                 
-                    if (swatch[2] < 55) {
-                        swatch[2] = 55;
-                    }
+                console.log("found swatch: " + swatch);
 
-                    document.documentElement.style.setProperty('--swatch', hslToHex(swatch));
-                    document.documentElement.style.setProperty('--dark_swatch', hslToHex(darkenSwatch(swatch)));
-
-                    break;
+                if (swatch[1] < 30 && swatch[1] > 5) {
+                    swatch[1] = 30;
+                } else if (swatch[1] <= 5 ) {
+                    swatch[1] *= 1.7;
+                } else if (swatch[1] > 50) {
+                    swatch[1] = swatch[1] * 1.3 > 100 ? 100 : swatch[1] * 1.3;
                 }
+            
+                if (swatch[2] < 50) {
+                    swatch[2] = 50;
+                }
+
+                console.log("found swatch: " + swatch);
+
+                document.documentElement.style.setProperty('--swatch', hslToHex(swatch));
+                document.documentElement.style.setProperty('--dark_swatch', hslToHex(darkenSwatch(swatch)));
+
+                break;
             }
         }
 
-        if (swatch[2] < 20) {
+        if (!foundSwatch) {
+            console.log("didnt found swatch: " + swatch);
             document.documentElement.style.setProperty('--swatch', '#FFFFFF');
             document.documentElement.style.setProperty('--dark_swatch', '#B9BBC7');
         }
+    }).catch (() => {
+        document.documentElement.style.setProperty('--swatch', '#FFFFFF');
+        document.documentElement.style.setProperty('--dark_swatch', '#B9BBC7');
     })
 }
 
