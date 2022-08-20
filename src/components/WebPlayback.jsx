@@ -69,16 +69,12 @@ function swatchColours(track) {
         var swatch = [0, 0, 0];
         var foundSwatch = false;
 
-        console.log('sw:' + swatch);
-
         for (let i = 0; i < colors.length; i++) {
             var hslcolor = rgbToHsl(colors[i]);
 
             if (hslcolor[1] > swatch[1] && hslcolor[2] > 25) {
                 swatch = hslcolor;
                 foundSwatch = true;
-                
-                console.log("found swatch: " + swatch);
 
                 if (swatch[1] < 30 && swatch[1] > 5) {
                     swatch[1] = 30;
@@ -92,8 +88,6 @@ function swatchColours(track) {
                     swatch[2] = 50;
                 }
 
-                console.log("found swatch: " + swatch);
-
                 document.documentElement.style.setProperty('--swatch', hslToHex(swatch));
                 document.documentElement.style.setProperty('--dark_swatch', hslToHex(darkenSwatch(swatch)));
 
@@ -102,7 +96,6 @@ function swatchColours(track) {
         }
 
         if (!foundSwatch) {
-            console.log("didnt found swatch: " + swatch);
             document.documentElement.style.setProperty('--swatch', '#FFFFFF');
             document.documentElement.style.setProperty('--dark_swatch', '#B9BBC7');
         }
