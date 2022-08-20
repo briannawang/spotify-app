@@ -1,5 +1,9 @@
 COLOURS
 :root {
+  --tempo: 0s;
+  --swatch: white;
+  --dark_swatch: rgb(185, 187, 199);
+
   --crimson: #d7263dff;
   --oxford-blue: #02182bff;
   --dodger-blue: #0197f6ff;
@@ -39,6 +43,12 @@ COLOURS
 
 .App {
   text-align: center;
+  background-color: #21222e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-logo {
@@ -53,16 +63,19 @@ COLOURS
 }
 
 .App-header {
+  width: 100%;
   background-color: #21222e;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
+mark.gold {
+  background-color: #21222e;
+  color: #d6ba73ff;
+}
 
 .App-link {
   color: #61dafb;
@@ -79,7 +92,8 @@ COLOURS
 
 h1 {
   display: flex;
-  margin-top: 0px;
+  margin-top: calc(1vmin - 2px);
+  margin-left: calc(2px + 1vmin);
   margin-bottom: calc(5px + 1vmin);
   align-self: center;
 }
@@ -94,9 +108,18 @@ h1 {
   text-decoration: none;
 }
 
+button.login-button {
+  margin-right: calc(12px + 2vmin);
+}
+
 .playback-window {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* display: flex; */
+  /* flex-direction: row; */
+  height: 84vh;
+  /* align-items: center;
+  justify-content: center; */
+}
+
+.background-text-color {
+  color: #67697e;
 }
