@@ -3,6 +3,7 @@ import './Player.css';
 import './../App.css';
 import { prominent } from 'color.js'
 import TrackAudioInfo from './TrackAudioInfo'
+import PlaylistView from './PlaylistView'
 import * as $ from "jquery";
 
 const track = {
@@ -105,13 +106,21 @@ function swatchColours(track) {
     })
 }
 
-function WebPlayback({token}) {
+function WebPlayback({token, userProfile}) {
     const is_pausedRef = useRef(true);
     const [is_active, setActive] = useState(false);
     const [player, setPlayer] = useState(undefined);
     const [current_track, setTrack] = useState(track);
     const [progress_ms, setProgress] = useState(0);
     const [duration_ms, setDuration] = useState(0);
+
+    const [showSidebar, setShownSidebar] = useState(false);
+
+    const handleShowSideBar = () => {
+        if (is_active) {
+            setShownSidebar(current => !current);
+        }
+    }
 
     const progressBarStyles = {
         width: (progress_ms * 100 / duration_ms) + '%'
@@ -197,66 +206,57 @@ function WebPlayback({token}) {
         }
     }, []);
 
-    if (!is_active) { 
         return (
-            <>
-                <div className="container">
-                    <div className="main-wrapper">
-                    {/* <p>{token}</p> */}
-                        <p className="background-text-color"> transfer playback device </p>
-                    </div>
-                </div>
-            </>)
-    } else {
-        return (
-            <>
-                <div className="container">
-                    {/* <p>{token}</p> */}
-                    <div className="main-wrapper">
+            <div className="container">
+                {(is_active) ?
+                <div className="main-wrapper">
+                    <img src={current_track.album.images[0].url} className="now-playing__img" alt="" />
 
-                        <img src={current_track.album.images[0].url} className="now-playing__img" alt="" />
+                    <div className="now-playing__side">
+                        <div className="now-playing__name">{current_track.name}</div>
+                        <div className="now-playing__artist">{current_track.artists[0].name}</div>
+                        
+                        <div className="control-btns">
+                            <button className="btn-spotify" onClick={() => { player.previousTrack() }} >
+                                ◄⏽
+                            </button>
 
-                        <div className="now-playing__side">
-                            <div className="now-playing__name">{current_track.name}</div>
-                            <div className="now-playing__artist">{current_track.artists[0].name}</div>
-                            
-                            <div className="control-btns">
-                                <button className="btn-spotify" onClick={() => { player.previousTrack() }} >
-                                    ◄⏽
-                                </button>
+                            <button className="btn-spotify" id="toggle-play" onClick={() => { console.log("player is " + player); player.togglePlay() }} >
+                                { is_pausedRef.current ? "play" : "pause" }
+                            </button>
 
-                                <button className="btn-spotify" id="toggle-play" onClick={() => { console.log("player is " + player); player.togglePlay() }} >
-                                    { is_pausedRef.current ? "play" : "pause" }
-                                </button>
+                            <button className="btn-spotify" onClick={() => { player.nextTrack() }} >
+                                ⏽►
+                            </button>
+                        </div>
 
-                                <button className="btn-spotify" onClick={() => { player.nextTrack() }} >
-                                    ⏽►
-                                </button>
+                        <div className="song-timeinfo">
+                            <div className="progress-background">
+                            <div className="progress">
+                                <div
+                                className="progress__bar"
+                                style={progressBarStyles}
+                                />
                             </div>
-
-                            <div className="song-timeinfo">
-                                <div className="progress-background">
-                                <div className="progress">
-                                    <div
-                                    className="progress__bar"
-                                    style={progressBarStyles}
-                                    />
-                                </div>
-                                </div>
-                                <div className="song-progress">
-                                    <p className="song-progress__position">{millisToMinutesAndSeconds(progress_ms)}</p>
-                                    <p className="song-progress__duration">{millisToMinutesAndSeconds(duration_ms)}</p>
-                                </div>
+                            </div>
+                            <div className="song-progress">
+                                <p className="song-progress__position">{millisToMinutesAndSeconds(progress_ms)}</p>
+                                <p className="song-progress__duration">{millisToMinutesAndSeconds(duration_ms)}</p>
                             </div>
                         </div>
                     </div>
+                </div>
+                : <p className="main-wrapper" id="background-text-color"> transfer playback device </p>}
+                {(!is_active || showSidebar) ?
+                    <PlaylistView token={token} userId={userProfile.id}/>
+                    :
                     <div className="TrackAudioInfo">
                         <TrackAudioInfo token={token} current_track={current_track} is_pausedRef={is_pausedRef.current}/>
                     </div>
-                </div>
-            </>
+                }
+                <button onClick={handleShowSideBar}>⌟</button>
+            </div>
         );
-    }
 }
 
 export default WebPlayback
