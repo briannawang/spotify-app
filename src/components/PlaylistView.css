@@ -15,7 +15,9 @@
 
 .playlist_list {
         height: 65%;
-        width: 60%;
+        width: 80%;
+        max-width: 450px;
+        padding-right: 10px;
         text-align: left;
         overflow-y: auto;
         overflow-x: hidden;

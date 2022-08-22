@@ -59,10 +59,10 @@ const rgbToHsl = ([r, g, b]) => {
 };
 
 function darkenSwatch ([h, s, l]) {
-    var subS = s > 30 ? 20 : s/3;
-    var subL = l > 20 ? 10 : s/4;
+    var subS = s > 30 ? 10 + (s/25) : s/3;
+    var subL = l > 20 ? 10 + (l/30): s/3;
 
-    return [ h, s - subS - (s/25), l - subL - (l/30)];
+    return [ h, s - subS, l - subL];
 }
 
 function swatchColours(track) {
@@ -145,7 +145,7 @@ function WebPlayback({token, userProfile}) {
                     console.log("token got " + token)
                     cb(token)
                  },
-                volume: 0.2
+                volume: 0.4
             });
 
             setPlayer(player);
@@ -254,7 +254,7 @@ function WebPlayback({token, userProfile}) {
                         <TrackAudioInfo token={token} current_track={current_track} is_pausedRef={is_pausedRef.current}/>
                     </div>
                 }
-                <button onClick={handleShowSideBar}>⌟</button>
+                <button onClick={handleShowSideBar}>◼</button>
             </div>
         );
 }
