@@ -5,6 +5,7 @@ import './PlaylistView.css';
 const playlistItems = {
     items: [{
         track: {
+            uri: "",
             id: "",
             name: "",
             album: {
@@ -21,18 +22,38 @@ const playlistItems = {
     total: 0
 }
 
-function TrackRow({track}) {
+const handleClickTrack = (uri, token, context_uri) => {
+    let data = '{"context_uri": "' + context_uri + '", "offset": {"uri": "' + uri + '"}}';
+
+    $.ajax({
+        url: "https://api.spotify.com/v1/me/player/play",
+        type: "PUT",
+        data: data,
+        beforeSend: xhr => {
+        xhr.setRequestHeader("Authorization", "Bearer " + token);
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        },
+
+        success: data => {
+            console.log("changed song to: " + uri);
+        }
+    });
+}
+
+function TrackRow({track, token, context_uri}) {
     return (
         <tr>
-            <td>{track.name} .......... {track.artists[0].name}{track.artists[1] && ", " + track.artists[1].name}</td>
+            <td onClick={() => {handleClickTrack(track.uri, token, context_uri)}}>
+                {track.name} ..... {track.artists[0].name}{track.artists[1] && ", " + track.artists[1].name}</td>
         </tr>
     );
 }
 
-function TrackDisplay({playlist, title}) {
+function TrackDisplay({playlist, title, token, context_uri}) {
     var playlistList = [];
     for (var i = playlist.items.length - 1; i >= 0; i--) {
-        playlistList.push(<TrackRow track={playlist.items[i].track}/>);
+        playlistList.push(<TrackRow track={playlist.items[i].track} token={token} context_uri={context_uri}/>);
     }
 
     return (
@@ -47,7 +68,7 @@ function TrackDisplay({playlist, title}) {
     );
 }
 
-function TrackView({token, url, title}) {
+function TrackView({token, url, title, context_uri, offset}) {
     const [playlist, setPlaylist] = useState(playlistItems);
     const [noData, setNoData] = useState(true);
 
@@ -84,7 +105,7 @@ function TrackView({token, url, title}) {
         return (
             <>
                 <div className="playlist-display">
-                    <TrackDisplay playlist={playlist} title={title}/>
+                    <TrackDisplay playlist={playlist} title={title} token={token} context_uri={context_uri}/>
                 </div>
             </>
         );
