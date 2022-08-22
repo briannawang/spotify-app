@@ -209,7 +209,6 @@ function TrackAudioInfo({token, current_track, is_pausedRef}) {
     if (noData) { 
         return (
             <>
-                <p>no data</p>
             </>)
     } else {
         return (

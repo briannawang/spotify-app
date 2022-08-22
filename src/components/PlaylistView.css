@@ -1,0 +1,29 @@
+.playlist-display {
+        display: flex;
+        width: 42vw;
+        height: 100%;
+}
+
+.playlist-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 90%;
+        width: 100%;
+}
+
+.playlist_list {
+        height: 65%;
+        width: 80%;
+        max-width: 450px;
+        padding-right: 10px;
+        text-align: left;
+        overflow-y: auto;
+        overflow-x: hidden;
+}
+
+td {
+        font-size: calc(2vmin + 2px);
+        padding-bottom: 6px;
+}
