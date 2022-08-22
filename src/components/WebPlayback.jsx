@@ -214,7 +214,7 @@ function WebPlayback({token, userProfile}) {
 
                     <div className="now-playing__side">
                         <div className="now-playing__name">{current_track.name}</div>
-                        <div className="now-playing__artist">{current_track.artists[0].name}</div>
+                        <div className="now-playing__artist">{current_track.artists[0].name}{current_track.artists[1] && ", " + current_track.artists[1].name}</div>
                         
                         <div className="control-btns">
                             <button className="btn-spotify" onClick={() => { player.previousTrack() }} >

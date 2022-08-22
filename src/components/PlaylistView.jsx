@@ -32,7 +32,7 @@ function PlaylistRow({playlist, setShowTracks, setUrl, setTitle}) {
                 setUrl(playlist.tracks.href + "?offset=" + offset + "&limit=50&fields=total,items(track(id,name,album(images(url)),artists(name),duration_ms))");
                 setTitle(playlist.name);
                 setShowTracks(true);
-                }}>{playlist.name}............{playlist.id}</td>
+                }}>{playlist.name} ............ {playlist.tracks.total}</td>
         </tr>
     );
 }

@@ -24,7 +24,7 @@ const playlistItems = {
 function TrackRow({track}) {
     return (
         <tr>
-            <td>{track.name} .......... {track.id}</td>
+            <td>{track.name} .......... {track.artists[0].name}{track.artists[1] && ", " + track.artists[1].name}</td>
         </tr>
     );
 }
@@ -49,8 +49,6 @@ function TrackDisplay({playlist, title}) {
 
 function TrackView({token, url, title}) {
     const [playlist, setPlaylist] = useState(playlistItems);
-    const [offset, setOffset] = useState(0);
-    const [checkTotal, setCheckTotal] = useState(true);
     const [noData, setNoData] = useState(true);
 
     useEffect(() => {
@@ -72,12 +70,11 @@ function TrackView({token, url, title}) {
 
                     setPlaylist(data);
                     setNoData(false);
-                    setOffset(0);
                 }
             });
         }
       
-    }, [url, checkTotal]);
+    }, [url]);
 
     if (noData) { 
         return (
