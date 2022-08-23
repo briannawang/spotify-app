@@ -105,3 +105,11 @@
         margin-top: 2px;
         margin-bottom: 0px;
 }
+
+.sidebar_button {
+        background-color: #3f4156;
+        display: flex;
+        font-size: calc(2px + 2vmin);
+        color: white;
+        border: 0px;
+}

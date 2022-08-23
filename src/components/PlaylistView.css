@@ -17,7 +17,6 @@
         height: 65%;
         width: 80%;
         max-width: 450px;
-        padding-right: 10px;
         text-align: left;
         overflow-y: auto;
         overflow-x: hidden;
@@ -25,5 +24,33 @@
 
 td {
         font-size: calc(2vmin + 2px);
-        padding-bottom: 6px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+}
+
+.small_cover {
+        width: calc(2vmin + 30px);
+}
+
+.track_top_text {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        overflow-x: hidden;
+}
+
+.track_bottom_text {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: calc(2vmin - 2px);
+        overflow-x: hidden;
+}
+
+.back_button {
+        background-color: #3f4156;
+        display: flex;
+        font-size: calc(10px + 2vmin);
+        color: white;
+        border: 0px;
+        width: calc(14px + 2vmin);
+        height: calc(14px + 2vmin);
 }

@@ -22,7 +22,10 @@ const uPlaylist = {
         tracks: {
             href: "",
             total: 0
-        }
+        },
+        images: [{
+            url: ""
+        }]
     }],
     total: 0
 }
@@ -46,9 +49,9 @@ const handleClickPlaylist = (playlist, setShowTracks, setUrl, setClickedPlaylist
 
 function PlaylistRow({playlist, setShowTracks, setUrl, setClickedPlaylist}) {
     return (
-        <tr>
-            <td onClick={() => {handleClickPlaylist(playlist, setShowTracks, setUrl, setClickedPlaylist)}}>
-                {playlist.name} ............ {playlist.id}</td>
+        <tr onClick={() => {handleClickPlaylist(playlist, setShowTracks, setUrl, setClickedPlaylist)}}>
+            <td><img src={playlist.images[0].url} className="small_cover" alt=""/></td>
+            <td>{playlist.name}</td>
         </tr>
     );
 }
@@ -109,7 +112,7 @@ function PlaylistView({token, userId}) {
     } else {
         return (
             <>
-                <button onClick={() => {handleGoBack(setShowTracks)}}>⌜</button>
+                <button className="back_button" onClick={() => {handleGoBack(setShowTracks)}}>⌜</button>
                 {!isShowTracks ? 
                     <div className="playlist-display">
                         <PlaylistDisplay userPlaylist={userPlaylist} setShowTracks={setShowTracks} setUrl={setUrl} setClickedPlaylist={setClickedPlaylist}/>

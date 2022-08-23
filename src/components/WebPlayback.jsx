@@ -210,7 +210,7 @@ function WebPlayback({token, userProfile}) {
             <div className="container">
                 {(is_active) ?
                 <div className="main-wrapper">
-                    <img src={current_track.album.images[0].url} className="now-playing__img" alt="" />
+                    <img src={current_track.album.images[0].url} className="now-playing__img" alt=""/>
 
                     <div className="now-playing__side">
                         <div className="now-playing__name">{current_track.name}</div>
@@ -254,7 +254,7 @@ function WebPlayback({token, userProfile}) {
                         <TrackAudioInfo token={token} current_track={current_track} is_pausedRef={is_pausedRef.current}/>
                     </div>
                 }
-                <button onClick={handleShowSideBar}>◼</button>
+                <button className="sidebar_button" onClick={handleShowSideBar}>◼</button>
             </div>
         );
 }
