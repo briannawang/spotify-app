@@ -58,6 +58,10 @@
         justify-content: center;
 }
 
+.btn-spotify:hover {
+        background-color: var(--dark_swatch, #3f4156);
+}
+
 #toggle-play {
         width: calc(50px + 3vmin);
 }
@@ -114,6 +118,10 @@
         border: 0px;
         width: calc(14px + 2vmin);
         height: calc(14px + 2vmin);
+}
+
+.sidebar_button:hover {
+        background-color: var(--dark_swatch, #3f4156);
 }
 
 #background-text-color {

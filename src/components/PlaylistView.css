@@ -54,3 +54,7 @@ td {
         width: calc(14px + 2vmin);
         height: calc(14px + 2vmin);
 }
+
+.back_button:hover {
+        background-color: var(--dark_swatch, #3f4156);
+}
