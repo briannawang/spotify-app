@@ -45,7 +45,7 @@ function App() {
   }, []);
 
   const logout = () => {
-      setToken("");
+    setToken("");
   }
 
   return (
@@ -60,7 +60,7 @@ function App() {
           {(token === "") ?
             <div></div>
             : <div className="playback-window">
-                <WebPlayback token={token} userProfile={userProfile}/>
+                <WebPlayback token={token} userProfile={userProfile} setToken={setToken}/>
             </div>
         }
     </div>

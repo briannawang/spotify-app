@@ -43,9 +43,11 @@ const handleClickTrack = (uri, token, context_uri) => {
 
 function TrackRow({track, token, context_uri}) {
     return (
-        <tr>
-            <td onClick={() => {handleClickTrack(track.uri, token, context_uri)}}>
-                {track.name} ..... {track.artists[0].name}{track.artists[1] && ", " + track.artists[1].name}</td>
+        <tr className="list_row" onClick={() => {handleClickTrack(track.uri, token, context_uri)}}>
+            <td><img src={track.album.images[0].url} className="small_cover" alt=""/></td>
+            <td><p className="list_item" id="track_top_text">{track.name}</p>
+                <p className="list_item" id="track_bottom_text">{track.artists[0].name}{track.artists[1] && ", " + track.artists[1].name}</p>
+            </td>
         </tr>
     );
 }
@@ -60,7 +62,7 @@ function TrackDisplay({playlist, title, token, context_uri}) {
         <div className="playlist-container">
             <p>{title}</p>
             <div className="playlist_list">
-                <table>
+                <table className="list_table">
                     {playlistList}
                 </table>
             </div>
