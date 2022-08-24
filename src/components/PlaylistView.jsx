@@ -49,9 +49,9 @@ const handleClickPlaylist = (playlist, setShowTracks, setUrl, setClickedPlaylist
 
 function PlaylistRow({playlist, setShowTracks, setUrl, setClickedPlaylist}) {
     return (
-        <tr onClick={() => {handleClickPlaylist(playlist, setShowTracks, setUrl, setClickedPlaylist)}}>
-            <td><img src={playlist.images[0].url} className="small_cover" alt=""/></td>
-            <td>{playlist.name}</td>
+        <tr className="list_row" onClick={() => {handleClickPlaylist(playlist, setShowTracks, setUrl, setClickedPlaylist)}}>
+            <td className="list_item"><img src={playlist.images[0].url} className="small_cover" alt=""/></td>
+            <td className="list_item">{playlist.name}</td>
         </tr>
     );
 }
@@ -65,7 +65,7 @@ function PlaylistDisplay({userPlaylist, setShowTracks, setUrl, setClickedPlaylis
         <div className="playlist-container">
             <p>playlist</p>
             <div className="playlist_list">
-                <table>
+                <table className="list_table">
                     {playlistList}
                 </table>
             </div>

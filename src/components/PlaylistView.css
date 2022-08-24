@@ -22,27 +22,44 @@
         overflow-x: hidden;
 }
 
-td {
+.list_table {
+        width: 100%;
+}
+
+.list_row {
+        display: flex;
+        align-items: center;
+        width: 100%;
+}
+
+.list_item {
         font-size: calc(2vmin + 2px);
-        padding-top: 2px;
-        padding-bottom: 2px;
+}
+
+.list_row:hover {
+        background-color: #2f303d;
 }
 
 .small_cover {
         width: calc(2vmin + 30px);
+        padding-right: 2px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        display: flex;
 }
 
-.track_top_text {
+#track_top_text {
         margin-top: 0px;
         margin-bottom: 0px;
         overflow-x: hidden;
 }
 
-.track_bottom_text {
+#track_bottom_text {
         margin-top: 0px;
         margin-bottom: 0px;
         font-size: calc(2vmin - 2px);
         overflow-x: hidden;
+        color: #a0a1b4;
 }
 
 .back_button {
