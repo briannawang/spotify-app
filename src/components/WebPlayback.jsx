@@ -21,6 +21,22 @@ const track = {
     duration_ms: 0
 }
 
+const transferPlayback = (device_id, token) => {
+    if (device_id != "") {
+        $.ajax({
+            url: "https://api.spotify.com/v1/me/player",
+            type: "PUT",
+            data: '{"device_ids":["'+ device_id + '"]}',
+            beforeSend: xhr => {
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            }
+        });
+
+        console.log("TRANSFERRED PLAYBACK");
+    }
+}
+
 function millisToMinutesAndSeconds(millis) {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -113,6 +129,7 @@ function WebPlayback({token, userProfile}) {
     const [current_track, setTrack] = useState(track);
     const [progress_ms, setProgress] = useState(0);
     const [duration_ms, setDuration] = useState(0);
+    const [device_id, setDeviceId] = useState("");
 
     const [showSidebar, setShownSidebar] = useState(false);
 
@@ -139,9 +156,6 @@ function WebPlayback({token, userProfile}) {
             var player = new window.Spotify.Player({
                 name: 'spotify app',
                 getOAuthToken: cb => { 
-                    // const response = fetch('/auth/token');
-                    // const json = response.json();
-                    // cb(json.access_token);
                     console.log("token got " + token)
                     cb(token)
                  },
@@ -151,6 +165,7 @@ function WebPlayback({token, userProfile}) {
             setPlayer(player);
 
             player.addListener('ready', ({ device_id }) => {
+                setDeviceId(device_id);
                 console.log('Ready with Device ID', device_id);
             });
 
@@ -221,7 +236,7 @@ function WebPlayback({token, userProfile}) {
                                 ◄⏽
                             </button>
 
-                            <button className="btn-spotify" id="toggle-play" onClick={() => { console.log("player is " + player); player.togglePlay() }} >
+                            <button className="btn-spotify" id="toggle-play" onClick={() => { player.togglePlay() }} >
                                 { is_pausedRef.current ? "play" : "pause" }
                             </button>
 
@@ -246,7 +261,7 @@ function WebPlayback({token, userProfile}) {
                         </div>
                     </div>
                 </div>
-                : <p className="main-wrapper" id="background-text-color"> transfer playback device </p>}
+                : <div className="main-wrapper"><p id="background-text-color" onClick={() => { transferPlayback(device_id, token) }}> transfer playback device </p></div>}
                 {(!is_active || showSidebar) ?
                     <PlaylistView token={token} userId={userProfile.id}/>
                     :
@@ -254,7 +269,7 @@ function WebPlayback({token, userProfile}) {
                         <TrackAudioInfo token={token} current_track={current_track} is_pausedRef={is_pausedRef.current}/>
                     </div>
                 }
-                <button className="sidebar_button" onClick={handleShowSideBar}>◼</button>
+                <button className="sidebar_button" onClick={() => { handleShowSideBar() }}>◼</button>
             </div>
         );
 }

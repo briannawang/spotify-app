@@ -1,7 +1,7 @@
 .TrackAudioInfo {
         display: flex;
         flex-direction: column;
-        width: 42vw;
+        width: calc(42vw);
         height: 90%;
         justify-content: center;
         align-items: center;

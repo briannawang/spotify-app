@@ -1,6 +1,6 @@
 .playlist-display {
         display: flex;
-        width: 42vw;
+        width: calc(42vw - 14px - 2vmin);
         height: 100%;
 }
 
