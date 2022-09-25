@@ -3,7 +3,7 @@
         flex-direction: row;
         align-items: center;
         /* justify-content: center; */
-        width: 100vw;
+        width: 100%;
         height: 100%;
 }
 
@@ -58,6 +58,10 @@
         justify-content: center;
 }
 
+.btn-spotify:hover {
+        background-color: var(--dark_swatch, #3f4156);
+}
+
 #toggle-play {
         width: calc(50px + 3vmin);
 }
@@ -104,4 +108,26 @@
         font-size: calc(2px + 2vmin);
         margin-top: 2px;
         margin-bottom: 0px;
+}
+
+.sidebar_button {
+        background-color: #3f4156;
+        display: flex;
+        font-size: calc(2px + 2vmin);
+        color: white;
+        border: 0px;
+        width: calc(14px + 2vmin);
+        height: calc(14px + 2vmin);
+}
+
+.sidebar_button:hover {
+        background-color: var(--dark_swatch, #3f4156);
+}
+
+#background-text-color {
+        color: #67697e;
+}
+
+#background-text-color:hover {
+        color: #a0a1b4;
 }
