@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Player.css';
 import './../App.css';
 import { prominent } from 'color.js'
-import TrackAudioInfo from './TrackAudioInfo'
-import PlaylistView from './PlaylistView'
 import * as $ from "jquery";
+
+const TrackAudioInfo = React.lazy(() => import('./TrackAudioInfo'));
+const PlaylistView = React.lazy(() => import('./PlaylistView'));
 
 const track = {
     uri: "",
@@ -151,63 +152,65 @@ function WebPlayback({token, userProfile}) {
 
         document.body.appendChild(script);
 
-        window.onSpotifyWebPlaybackSDKReady = () => {
+        if (!is_active){
+            window.onSpotifyWebPlaybackSDKReady = () => {
 
-            var player = new window.Spotify.Player({
-                name: 'spotify app',
-                getOAuthToken: cb => { 
-                    console.log("token got " + token)
-                    cb(token)
-                 },
-                volume: 0.4
-            });
-
-            setPlayer(player);
-
-            player.addListener('ready', ({ device_id }) => {
-                setDeviceId(device_id);
-                console.log('Ready with Device ID', device_id);
-            });
-
-            player.addListener('not_ready', ({ device_id }) => {
-                console.log('Device ID has gone offline', device_id);
-            });
-
-            player.addListener('player_state_changed', ( state => {
-                if (!state) {
-                    return;
-                }
-
-                if (current_track !== state.track_window.current_track) {
-                    $.ajax({
-                        url: "https://api.spotify.com/v1/me/player",
-                        type: "GET",
-                        beforeSend: xhr => {
-                        xhr.setRequestHeader("Authorization", "Bearer " + token);
-                        xhr.setRequestHeader("Content-Type", "application/json");
-                        },
-            
-                        success: data => {
-                            if(data) {
-                                setDuration(data.item.duration_ms);
-                            }
-                        }
-                    });
-
-                    setTrack(state.track_window.current_track);
-                    swatchColours(state.track_window.current_track);
-                }
-
-                setProgress(state.position);
-                is_pausedRef.current = state.paused;
-
-                player.getCurrentState().then( state => { 
-                    (!state)? setActive(false) : setActive(true) 
+                var player = new window.Spotify.Player({
+                    name: 'spotify app',
+                    getOAuthToken: cb => { 
+                        console.log("token got " + token)
+                        cb(token)
+                     },
+                    volume: 0.4
                 });
-
-            }));
-
-            player.connect();
+    
+                setPlayer(player);
+    
+                player.addListener('ready', ({ device_id }) => {
+                    setDeviceId(device_id);
+                    console.log('Ready with Device ID', device_id);
+                });
+    
+                player.addListener('not_ready', ({ device_id }) => {
+                    console.log('Device ID has gone offline', device_id);
+                });
+    
+                player.addListener('player_state_changed', ( state => {
+                    if (!state) {
+                        return;
+                    }
+    
+                    if (current_track !== state.track_window.current_track) {
+                        $.ajax({
+                            url: "https://api.spotify.com/v1/me/player",
+                            type: "GET",
+                            beforeSend: xhr => {
+                            xhr.setRequestHeader("Authorization", "Bearer " + token);
+                            xhr.setRequestHeader("Content-Type", "application/json");
+                            },
+                
+                            success: data => {
+                                if(data) {
+                                    setDuration(data.item.duration_ms);
+                                }
+                            }
+                        });
+    
+                        setTrack(state.track_window.current_track);
+                        swatchColours(state.track_window.current_track);
+                    }
+    
+                    setProgress(state.position);
+                    is_pausedRef.current = state.paused;
+    
+                    player.getCurrentState().then( state => { 
+                        (!state)? setActive(false) : setActive(true) 
+                    });
+    
+                }));
+    
+                player.connect();
+            }
         }
 
         const interval = setInterval(() => {

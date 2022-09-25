@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import * as $ from "jquery";
 import './PlaylistView.css';
-import TrackView from './TrackView'
+
+const TrackView = React.lazy(() => import('./TrackView'));
 
 const cPlaylist = {
     uri: "",

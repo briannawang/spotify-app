@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import WebPlayback from './components/WebPlayback'
-import Login from './components/Login'
+import React, { Suspense, useState, useEffect } from 'react';
 import './App.css';
 import * as $ from "jquery";
+
+const Login = React.lazy(() => import('./components/Login')); // code splitting
+const WebPlayback = React.lazy(() => import('./components/WebPlayback'));
 
 const profile = {
   display_name: "",
@@ -60,7 +61,9 @@ function App() {
           {(token === "") ?
             <div></div>
             : <div className="playback-window">
-                <WebPlayback token={token} userProfile={userProfile} setToken={setToken}/>
+                <Suspense fallback={<div></div>}>
+                  <WebPlayback token={token} userProfile={userProfile} setToken={setToken}/>
+                </Suspense>
             </div>
         }
     </div>
