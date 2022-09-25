@@ -1,18 +1,17 @@
 {
   "name": "spotify-app",
   "version": "0.1.0",
+  "homepage": "https://briannawang.github.io/spotify-app",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
     "color.js": "^1.2.0",
+    "env-cmd": "^10.1.0",
+    "eslint-config-react-app": "^7.0.1",
     "jquery": "^3.6.0",
-    "node-vibrant": "^3.2.1-alpha.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -20,7 +19,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node server",
-    "dev": "run-p server start"
+    "dev": "SLUG=http://localhost:3000 run-p server start",
+    "predeploy": "SLUG=https://briannawang.github.io/spotify-app/ npm run build"
   },
   "eslintConfig": {
     "extends": [

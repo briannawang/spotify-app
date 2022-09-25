@@ -8,10 +8,10 @@ global.access_token = ''
 
 dotenv.config()
 
-var spotify_client_id = process.env.SPOTIFY_CLIENT_ID
-var spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
+const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
+const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
 
-var spotify_redirect_uri = 'http://localhost:3000/auth/callback'
+const spotify_redirect_uri = process.env.SLUG + '/auth/callback'
 
 var generateRandomString = function (length) {
   var text = '';
@@ -23,11 +23,10 @@ var generateRandomString = function (length) {
   return text;
 };
 
-var app = express();
+const app = express();
 
 app.get('/auth/login', (req, res) => {
-
-  var scope = "streaming user-read-email user-read-private user-read-currently-playing user-read-playback-state user-modify-playback-state playlist-read-private"
+  const scope = "streaming user-read-email user-read-private user-read-currently-playing user-read-playback-state user-modify-playback-state playlist-read-private"
   var state = generateRandomString(16);
 
   var auth_query_parameters = new URLSearchParams({
