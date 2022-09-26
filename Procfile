@@ -1,1 +1,1 @@
-web: SLUG=https://spotify-app-bw.herokuapp.com node index.js
+web: SLUG=https://spotify-app-bw.herokuapp.com node server.js
