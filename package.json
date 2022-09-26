@@ -2,6 +2,7 @@
   "name": "spotify-app",
   "version": "0.1.0",
   "homepage": "https://spotify-app-bw.herokuapp.com",
+  "main": "server.js",
   "private": true,
   "engines": {
     "node": "14.17.5"
@@ -19,13 +20,13 @@
     "request": "^2.88.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
+    "heroku-postbuild": "npm install",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node server",
-    "dev": "SLUG=http://localhost:3000 run-p server start",
-    "predeploy": "SLUG=https://spotify-app-bw.herokuapp.com npm run build"
+    "dev": "SLUG=http://localhost:3000 run-p server start"
   },
   "eslintConfig": {
     "extends": [

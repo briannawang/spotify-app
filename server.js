@@ -1,8 +1,9 @@
 const express = require('express')
 const request = require('request');
 const dotenv = require('dotenv');
+const path = require('path');
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 global.access_token = ''
 
@@ -24,6 +25,11 @@ var generateRandomString = function (length) {
 };
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, "build")));
+
+// This route serves the React app
+app.get('/', (req, res) => res.sendFile(path.resolve(__dirname, "build", "index.html")));
 
 app.get('/auth/login', (req, res) => {
   const scope = "streaming user-read-email user-read-private user-read-currently-playing user-read-playback-state user-modify-playback-state playlist-read-private"
