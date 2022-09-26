@@ -14,7 +14,7 @@
     "react-scripts": "^5.0.1"
   },
   "scripts": {
-    "start": "node server",
+    "start": "SLUG=https://spotify-app-bw.herokuapp.com/ run-p server start-client",
     "heroku-postbuild": "npm install && npm run build",
     "start-client": "react-scripts start",
     "build": "react-scripts build",
