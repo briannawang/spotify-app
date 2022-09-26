@@ -1,1 +1,1 @@
-web: SLUG=https://spotify-app-bw.herokuapp.com node server
+web: SLUG=https://spotify-app-bw.herokuapp.com run-p server start
