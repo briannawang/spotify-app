@@ -1,7 +1,7 @@
 {
   "name": "spotify-app",
   "version": "0.1.0",
-  "homepage": "https://briannawang.github.io/spotify-app",
+  "homepage": "https://spotify-app-bw.herokuapp.com",
   "private": true,
   "engines": {
     "node": "14.17.5"
