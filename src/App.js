@@ -1,4 +1,5 @@
 import React, { Suspense, useState, useEffect } from 'react';
+import { useBeforeunload } from 'react-beforeunload';
 import './App.css';
 import * as $ from "jquery";
 
@@ -17,7 +18,7 @@ function App() {
   const [token, setToken] = useState("");
   const [userProfile, setUserProfile] = useState(profile);
 
-  useEffect(() => {
+  useEffect(() => {    
     async function getToken() {
       const response = await fetch('/auth/token');
       const json = await response.json();
@@ -47,7 +48,11 @@ function App() {
 
   const logout = () => {
     setToken("");
+    console.log("logging out");
+    window.open("https://accounts.spotify.com/en/logout", "_blank", "noopener noreferrer").focus();
   }
+
+  useBeforeunload(() => logout());
 
   return (
     <div className="App">
