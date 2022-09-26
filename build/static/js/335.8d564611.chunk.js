@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkspotify_app=self.webpackChunkspotify_app||[]).push([[335],{335:function(n,t,s){s.r(t);s(791),s(508);var a=s(184);t.default=function(){return(0,a.jsx)("button",{className:"login-button",children:(0,a.jsx)("a",{className:"login-button",href:"/auth/login",children:"login"})})}}}]);
+//# sourceMappingURL=335.8d564611.chunk.js.map
