@@ -20,13 +20,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "heroku-postbuild": "SLUG=https://spotify-app-bw.herokuapp.com npm install && npm run build",
-    "start-client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node server",
-    "dev": "SLUG=http://localhost:3000 run-p server start-client",
+    "dev": "SLUG=http://localhost:3000 run-p server start",
     "predeploy": "SLUG=https://spotify-app-bw.herokuapp.com npm run build"
   },
   "eslintConfig": {
